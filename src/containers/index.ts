@@ -9,6 +9,7 @@ import { OcorrenciaRepository } from "../modules/public/repositories/OcorrenciaR
 import { OcorrenciaPolicialRepository } from "../modules/public/repositories/OcorrenciaPolicialRepository";
 import { EnderecoRepository } from "../modules/public/repositories/EnderecoRepository";
 import { ArmaRepository } from "../modules/public/repositories/ArmaRepository";
+import { VitimaRepository } from "../modules/public/repositories/VitimaRepository";
 
 container.registerSingleton("ViaturaRepository", ViaturaRepository);
 
@@ -29,3 +30,5 @@ container.registerSingleton("OcorrenciaPolicialRepository", OcorrenciaPolicialRe
 container.registerSingleton("EnderecoRepository", EnderecoRepository);
 
 container.registerSingleton("ArmaRepository", ArmaRepository);
+
+container.registerSingleton("VitimaRepository", VitimaRepository);
