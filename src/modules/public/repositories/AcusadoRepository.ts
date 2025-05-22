@@ -37,30 +37,10 @@ export class AcusadoRepository implements IAcusadoRepository {
   }
 
   public async findById(id: string): Promise<Acusado | null> {
-    return await this.acusadoRepository
-      .createQueryBuilder("acusado")
-      .leftJoinAndSelect("acusado.endereco", "endereco")
-      .where("acusado.id = :id", { id })
-      .select([
-        "acusado.id",
-        "acusado.nome",
-        "acusado.cpf",
-        "acusado.dataNascimento",
-        "acusado.nomeMae",
-        "acusado.nomePai",
-        "acusado.naturalidade",
-        "acusado.nacionalidade",
-        "acusado.createdAt",
-        "acusado.updatedAt",
-        "endereco.rua",
-        "endereco.numero",
-        "endereco.complemento",
-        "endereco.bairro",
-        "endereco.cidade",
-        "endereco.uf",
-        "endereco.cep",
-      ])
-      .getOne();
+    return await this.acusadoRepository.findOne({
+      where: { id },
+      relations: ["endereco"],
+    });
   }
 
   public async update(id: string, data: Partial<Acusado>): Promise<Acusado> {

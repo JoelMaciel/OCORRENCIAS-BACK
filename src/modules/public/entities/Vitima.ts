@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -10,7 +11,7 @@ import {
 import { Ocorrencia } from "./Ocorrencia";
 import { Endereco } from "./Endereco";
 
-@Entity("presos")
+@Entity("vitimas")
 export class Vitima {
   @PrimaryGeneratedColumn("uuid")
   id: string;
@@ -42,10 +43,11 @@ export class Vitima {
   @UpdateDateColumn({ name: "updated_at" })
   updatedAt: Date;
 
-  @OneToOne(() => Ocorrencia)
+  @ManyToOne(() => Ocorrencia, (ocorrencia) => ocorrencia.vitimas)
+  @JoinColumn({ name: "ocorrencia_id" })
   ocorrencia: Ocorrencia;
 
   @OneToOne(() => Endereco, { cascade: true, eager: true })
-  @JoinColumn()
+  @JoinColumn({ name: "endereco_id" })
   endereco: Endereco;
 }

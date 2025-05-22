@@ -16,6 +16,7 @@ export class DeletarAcusadoUseCase {
     if (!acusado) {
       throw new AcusadoNotFoundException();
     }
+
     await this.enderecoRepository.delete(acusado.endereco.id);
 
     await this.acusadoRepository.delete(acusado);
