@@ -1,5 +1,4 @@
 import { inject, injectable } from "tsyringe";
-
 import { IVitimaRepository } from "../../repositories/interfaces/IVitimaRepository";
 import { VitimaResponseDTO } from "../../dtos/response/VitmaResponseDTO";
 

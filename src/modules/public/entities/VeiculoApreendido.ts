@@ -3,7 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
-  OneToOne,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -14,25 +14,31 @@ export class VeiculoApreendido {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ length: 20 })
+  @Column()
+  tipo: string;
+
+  @Column()
   placa: string;
 
-  @Column({ length: 30 })
+  @Column()
   modelo: string;
 
-  @Column({ length: 20 })
+  @Column()
   cor: string;
 
-  @Column({ length: 200 })
+  @Column()
   situacao: string;
 
-  @CreateDateColumn({ name: "created_at" })
+  @Column()
+  observacoes: string;
+
+  @CreateDateColumn()
   createdAt: Date;
 
-  @UpdateDateColumn({ name: "updated_at" })
+  @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => Ocorrencia)
-  @JoinColumn()
+  @ManyToOne(() => Ocorrencia, (ocorrencia) => ocorrencia.veiculos)
+  @JoinColumn({ name: "ocorrencia_id" })
   ocorrencia: Ocorrencia;
 }
