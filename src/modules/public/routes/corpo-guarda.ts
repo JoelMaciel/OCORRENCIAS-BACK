@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CorpoGuardaController } from "../controllers/corpoGuarda";
+import { CorpoGuardaController } from "../controllers/corpo_guarda";
 
 const corpoGuardaRoutes = Router();
 
