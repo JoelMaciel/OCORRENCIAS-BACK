@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { container } from "tsyringe";
-import { CriarCorpoGuardaUseCase } from "../usecases/corpoGuarda/criar-corpo-guarda";
-import { AtualizarCorpoGuardaUseCase } from "../usecases/corpoGuarda/atualizar-corpo-guarda";
-import { BuscarCorpoGuardaUseCase } from "../usecases/corpoGuarda/buscar-corpo-guarda";
-import { ListarCorpoGuardaUseCase } from "../usecases/corpoGuarda/listar-corpo-guarda";
+import { CriarCorpoGuardaUseCase } from "../usecases/corpo_guarda/criar-corpo-guarda";
+import { AtualizarCorpoGuardaUseCase } from "../usecases/corpo_guarda/atualizar-corpo-guarda";
+import { BuscarCorpoGuardaUseCase } from "../usecases/corpo_guarda/buscar-corpo-guarda";
+import { ListarCorpoGuardaUseCase } from "../usecases/corpo_guarda/listar-corpo-guarda";
 import { ValidationSchema } from "../dtos/validation/ValidateSchema";
 import { CreateCorpoGuardaSchema } from "../dtos/schemas/CreateCorpoGuardaSchema";
 import { UpdateCorpoGuardaSchema } from "../dtos/schemas/UpdateCorpoGuardaSchema";
