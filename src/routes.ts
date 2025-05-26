@@ -8,17 +8,19 @@ import { acusadosRoutes } from "./modules/public/routes/acusados";
 import { armasRoutes } from "./modules/public/routes/armas";
 import { vitimasRoutes } from "./modules/public/routes/vitima";
 import { veiculosRoutes } from "./modules/public/routes/veiculo";
+import { drogasRoutes } from "./modules/public/routes/droga";
 
 const routes = Router();
 
-routes.use("/viaturas", viaturasRoutes);
-routes.use("/batalhoes", batalhoesRoutes);
-routes.use("/policiais", policiaisRoutes);
-routes.use("/corpoGuarda", corpoGuardaRoutes);
-routes.use("/ocorrencias", ocorrenciasRoutes);
-routes.use("/acusados", acusadosRoutes);
-routes.use("/armas", armasRoutes);
-routes.use("/vitimas", vitimasRoutes);
-routes.use("/veiculos", veiculosRoutes);
+routes.use("/api/viaturas", viaturasRoutes);
+routes.use("/api/batalhoes", batalhoesRoutes);
+routes.use("/api/policiais", policiaisRoutes);
+routes.use("/api/corpoGuarda", corpoGuardaRoutes);
+routes.use("/api/ocorrencias", ocorrenciasRoutes);
+routes.use("/api/acusados", acusadosRoutes);
+routes.use("/api/armas", armasRoutes);
+routes.use("/api/vitimas", vitimasRoutes);
+routes.use("/api/veiculos", veiculosRoutes);
+routes.use("/api/drogas", drogasRoutes);
 
 export { routes };
