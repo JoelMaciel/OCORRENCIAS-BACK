@@ -3,7 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
-  OneToOne,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -24,13 +24,13 @@ export class Droga {
   @Column({ name: "unidade_medida", type: "enum", enum: UnidadeMedida })
   unidadeMedida: UnidadeMedida;
 
-  @CreateDateColumn({ name: "created-at" })
+  @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
 
   @UpdateDateColumn({ name: "updated_at" })
   updatedAt: Date;
 
-  @OneToOne(() => Ocorrencia)
-  @JoinColumn()
+  @ManyToOne(() => Ocorrencia, (ocorrencia) => ocorrencia.drogas)
+  @JoinColumn({ name: "ocorrencia_id" })
   ocorrencia: Ocorrencia;
 }
