@@ -12,4 +12,15 @@ export interface IPolicialRepository {
   existsByEmail(email: string, id?: string): Promise<boolean>;
   existsByMatricula(matricula: string): Promise<boolean>;
   existsByCpf(cpf: string): Promise<boolean>;
+  findByEmailWithRoles(email: string): Promise<Policial | null>;
+  save(policial: Policial): Promise<Policial>;
+  updateRefreshToken(id: string, refreshToken: string, expiresIn: Date): Promise<void>;
+  findByRefreshToken(refreshToken: string): Promise<Policial | null>;
+  updateRefreshToken(
+    id: string,
+    refreshToken: string,
+    expiresIn: Date,
+    oldTokenId?: string
+  ): Promise<void>;
+  findByUserId(userId: string): Promise<Policial | null>;
 }

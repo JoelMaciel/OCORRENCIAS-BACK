@@ -85,4 +85,10 @@ export class Policial {
     inverseJoinColumn: { name: "role_id" },
   })
   roles: Role[];
+
+  @Column({ name: "refresh_token", nullable: true, type: "text" })
+  refreshToken: string;
+
+  @Column({ name: "refresh_token_expires_in", nullable: true, type: "timestamp" })
+  refreshTokenExpiresIn: Date;
 }
