@@ -17,14 +17,19 @@ export class PolicialRepository implements IPolicialRepository {
 
     return this.policialRepository.findOneOrFail({
       where: { id: savedPolicial.id },
-      relations: ["batalhao"],
+      relations: ["roles", "batalhao"],
     });
+  }
+
+  public async save(policial: Policial): Promise<Policial> {
+    return await this.policialRepository.save(policial);
   }
 
   public async findById(id: string): Promise<Policial | null> {
     return await this.policialRepository
       .createQueryBuilder("policial")
       .leftJoinAndSelect("policial.batalhao", "batalhao")
+      .leftJoinAndSelect("policial.roles", "role")
       .select([
         "policial.id",
         "policial.nome",
@@ -35,6 +40,7 @@ export class PolicialRepository implements IPolicialRepository {
         "policial.postoGraduacao",
         "policial.dataAdmissao",
         "batalhao.nome",
+        "role.role",
       ])
       .where("policial.id = :id", { id })
       .getOne();
@@ -103,6 +109,31 @@ export class PolicialRepository implements IPolicialRepository {
     await this.policialRepository.delete(id);
   }
 
+  public async updateRefreshToken(
+    id: string,
+    refreshToken: string,
+    expiresIn: Date
+  ): Promise<void> {
+    await this.policialRepository.update(id, {
+      refreshToken,
+      refreshTokenExpiresIn: expiresIn,
+    });
+  }
+
+  public async findByRefreshToken(refreshToken: string): Promise<Policial | null> {
+    return this.policialRepository.findOne({
+      where: { refreshToken },
+      relations: ["roles"],
+    });
+  }
+
+  async findByUserId(userId: string): Promise<Policial | null> {
+    return this.policialRepository.findOne({
+      where: { id: userId },
+      relations: ["roles"],
+    });
+  }
+
   public async findByIds(ids: string[]): Promise<Policial[]> {
     return this.policialRepository.find({
       where: { id: In(ids) },
@@ -123,5 +154,12 @@ export class PolicialRepository implements IPolicialRepository {
   public async existsByEmail(email: string): Promise<boolean> {
     const count = await this.policialRepository.count({ where: { email } });
     return count > 0;
+  }
+
+  public async findByEmailWithRoles(email: string): Promise<Policial | null> {
+    return await this.policialRepository.findOne({
+      where: { email },
+      relations: ["roles"],
+    });
   }
 }

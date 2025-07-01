@@ -10,6 +10,7 @@ import { vitimasRoutes } from "./modules/public/routes/vitima";
 import { veiculosRoutes } from "./modules/public/routes/veiculo";
 import { drogasRoutes } from "./modules/public/routes/droga";
 import { objetosRoutes } from "./modules/public/routes/objeto-apreendido";
+import { authRoutes } from "./modules/public/routes/auth";
 
 const routes = Router();
 
@@ -24,5 +25,6 @@ routes.use("/api/vitimas", vitimasRoutes);
 routes.use("/api/veiculos", veiculosRoutes);
 routes.use("/api/drogas", drogasRoutes);
 routes.use("/api/objeto-apreendido", objetosRoutes);
+routes.use("/api/auth", authRoutes);
 
 export { routes };
