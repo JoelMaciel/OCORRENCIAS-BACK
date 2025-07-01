@@ -17,8 +17,6 @@ export class GetProfileUseCase {
       throw new PoliciaNotFoundException();
     }
 
-    console.log(policial);
-
     return new ProfileResponseDTO(
       policial.id,
       policial.nome,
