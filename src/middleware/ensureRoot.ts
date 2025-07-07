@@ -10,13 +10,10 @@ export const ensureRoot = (req: Request, res: Response, next: NextFunction) => {
 
   const userRoles = req.user.roles || [];
 
-  const hasAccess = userRoles.some(
-    (role) => ROLE_HIERARCHY.indexOf(role) <= ROLE_HIERARCHY.indexOf("ROOT")
-  );
+  const isRoot = userRoles.some((role) => role === "ROOT");
 
-  if (!hasAccess) {
+  if (!isRoot) {
     throw new AppError("Acesso negado. Requer perfil de ROOT.", 403);
   }
-
   return next();
 };

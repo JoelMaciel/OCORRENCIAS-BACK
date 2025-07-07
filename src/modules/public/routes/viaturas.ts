@@ -7,6 +7,7 @@ import { ensureRoot } from "../../../middleware/ensureRoot";
 const viaturasRoutes = Router();
 
 const viaturasController = new ViaturasController();
+
 viaturasRoutes.use(ensureAuthenticated);
 
 viaturasRoutes.post("/", ensureRoot, viaturasController.create);

@@ -11,6 +11,7 @@ export class OcorrenciaResponseDTO {
   tipoOcorrencia: string;
   artigo: string;
   resumo: string;
+
   status: StatusOcorrencia;
   createdAt: Date;
   updatedAt: Date;
@@ -75,16 +76,20 @@ export class OcorrenciaResponseDTO {
       cep: ocorrencia.endereco.cep,
     };
 
-    this.fiscal = {
-      nome: ocorrencia.fiscal.nome,
-      postoGraduacao: ocorrencia.fiscal.postoGraduacao,
-      matricula: ocorrencia.fiscal.matricula,
-    };
+    this.fiscal = ocorrencia.fiscal
+      ? {
+          nome: ocorrencia.fiscal.nome,
+          postoGraduacao: ocorrencia.fiscal.postoGraduacao,
+          matricula: ocorrencia.fiscal.matricula,
+        }
+      : { nome: "", postoGraduacao: "", matricula: "" };
 
-    this.supervisor = {
-      nome: ocorrencia.supervisor.nome,
-      postoGraduacao: ocorrencia.supervisor.postoGraduacao,
-      matricula: ocorrencia.supervisor.matricula,
-    };
+    this.supervisor = ocorrencia.supervisor
+      ? {
+          nome: ocorrencia.supervisor.nome,
+          postoGraduacao: ocorrencia.supervisor.postoGraduacao,
+          matricula: ocorrencia.supervisor.matricula,
+        }
+      : { nome: "", postoGraduacao: "", matricula: "" };
   }
 }

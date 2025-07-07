@@ -12,7 +12,7 @@ batalhoesRoutes.use(ensureAuthenticated);
 batalhoesRoutes.post("/", ensureRoot, batalhoesController.create);
 batalhoesRoutes.get("/:id", batalhoesController.findById);
 batalhoesRoutes.delete("/:id", ensureRoot, batalhoesController.delete);
-batalhoesRoutes.get("/", ensureAdmin, batalhoesController.findAll);
-batalhoesRoutes.put("/:id", ensureRoot, batalhoesController.update);
+batalhoesRoutes.get("/", batalhoesController.findAll);
+batalhoesRoutes.put("/:id", ensureAdmin, batalhoesController.update);
 
 export { batalhoesRoutes };

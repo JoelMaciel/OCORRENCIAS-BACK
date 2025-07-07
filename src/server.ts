@@ -6,11 +6,17 @@ import { routes } from "./routes";
 import errorHandler from "./middleware/errorHandler";
 import cors from "cors";
 import "express-async-errors";
-
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+  })
+);
 
 AppDataSource.initialize()
   .then(() => {

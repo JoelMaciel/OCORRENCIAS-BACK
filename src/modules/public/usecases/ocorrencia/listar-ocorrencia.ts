@@ -24,7 +24,7 @@ export class ListarOcorrenciasUseCase {
     page: number;
     totalPages: number;
   }> {
-    const [ocorrencia, total] = await this.ocorrenciaRepository.findAll(
+    const [ocorrencias, total] = await this.ocorrenciaRepository.findAll(
       page,
       limit,
       mOcorrencia,
@@ -38,7 +38,8 @@ export class ListarOcorrenciasUseCase {
 
     const totalPages = Math.ceil(total / limit);
 
-    const data = ocorrencia.map((ocorrencia) => new OcorrenciaResponseDTO(ocorrencia));
+    const data = ocorrencias.map((ocorrencia) => new OcorrenciaResponseDTO(ocorrencia));
+
     return { data, total, page, totalPages };
   }
 }
